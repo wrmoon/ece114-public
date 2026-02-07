@@ -1,0 +1,71 @@
+#!/bin/bash
+
+function usage() {
+    echo ggg: compile a single-file c/cpp program
+    echo Usage: ggg [flags] path/to/file.c[pp]
+    echo flags:
+    echo     -h --help        This help
+    echo     -s --sanitize    Compile with ASAN address sanitizer
+    echo     -q --quiet       Dont produce any output
+}
+
+VERBOSE=1
+SANITIZE=""
+
+if [[ $# -eq 0 ]]; then
+    usage
+    exit 1
+fi
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h|--help)
+            usage
+            exit 1
+            ;;
+        -s|--sanitize)
+            SANITIZE="-fsanitize=address"
+            shift
+            ;;
+        -q|--quiet)
+            VERBOSE=0
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+# Get the full file path passed in as the first argument
+raw="$1"
+
+# Extract the directory path (everything before the last '/')
+dir_path=$(dirname "$raw")
+
+# Extract the basename (file name with extension)
+base_name=$(basename "$raw")
+
+# Extract the basename without the extension
+base="${base_name%.*}"
+
+dotc="$base.c"
+dotcpp="$base.cpp"
+
+if [ -e $dir_path/$dotc ]; then
+    cmd="clang -g -std=gnu11 -Wall -Werror $SANITIZE -o $dir_path/$base $dir_path/$dotc -lm"
+elif [ -e $dir_path/$dotcpp ]; then
+    cmd="clang++ -g -std=gnu++11 -Wall -Werror $SANITIZE -o $dir_path/$base $dir_path/$dotcpp"
+else
+    echo "Cannot find $dotc or $dotcpp"
+    exit -1
+fi
+if [[ "$VERBOSE" == "1" ]]; then
+    echo rm -rf $dir_path/$base
+fi
+rm -rf $dir_path/$base
+if [[ "$VERBOSE" == "1" ]]; then
+    echo $cmd
+fi
+$cmd
+exit $?
