@@ -1,0 +1,8 @@
+VERSION.txt
+# unignore these things
+!.vscode/*
+!ECE114-template.code-profile
+!*.sh
+!*.py
+!*.md
+

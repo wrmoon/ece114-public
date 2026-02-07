@@ -1,0 +1,42 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++ (single file)",
+            "command": "ggg",
+            "args": [
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "Builds executable from active c/c++ file."
+        },
+        {
+            "type": "cppbuild",
+            "label": "make",
+            "command": "make",
+            "args": [],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "Builds project using make"
+        },
+        {
+            "label": "[MacOS Only] Open Terminal",
+            "type": "shell",
+            "command": "osascript -e 'tell application \"Terminal\"\ndo script \"echo hello\"\nend tell'",
+            "problemMatcher": []
+        }
+
+    ],
+    "version": "2.0.0"
+}
