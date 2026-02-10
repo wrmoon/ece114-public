@@ -2,13 +2,14 @@
 #include <stdio.h>
 #include <string.h>
 
-int main ()
+int main()
 {
-  char str[80];
-  strcpy (str,"these ");
-  strcat (str,"strings ");
-  strcat (str,"are ");
-  strcat (str,"concatenated.");
-  puts (str);
-  return 0;
+    char str[80] = {0};
+    strcpy(str, "these ");
+    strcat(str, "strings ");
+    strcat(str, "are ");
+    strcat(str, "concatenated.");
+    puts(str);
+
+    return 0;
 }

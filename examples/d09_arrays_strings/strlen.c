@@ -4,9 +4,9 @@
 
 int main (void)
 {
-  char szInput[256];
-  printf ("Enter a sentence: ");
-  gets (szInput);
-  printf ("The sentence entered is %u characters long.\n",(unsigned)strlen(szInput));
-  return 0;
+    char input[256] = {0};
+    printf("Enter a sentence: ");
+    fgets(input, sizeof(input), stdin);
+    printf("The sentence entered is %zu characters long.\n", strlen(input));
+    return 0;
 }
