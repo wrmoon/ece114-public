@@ -1,7 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////
 //
 // Techniques for parsing the command line without using pointers.
-// Some of these techniques require global variables. 
 //
 // NOTE 1: It is important to understand the techniques used here.
 //         You will probably need to adapt them to fit your program.
