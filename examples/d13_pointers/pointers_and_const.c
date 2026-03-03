@@ -77,15 +77,15 @@ void example3(void)
     printf("f3 is %d.\n", f3);
 }
 
-// How to declare a const pointer to a const
-// ...such a pointer cannot be modified, and you can't modify what it points
-//    to, either
+// How to declare a const pointer to a const.
+// Such a pointer cannot be modified... 
+// ... and you can't modify what it points to, too
 void example4(void)
 {
     int e4 = 10;
     printf("e4 is %d.\n", e4);
 
-    // notice the const is to the right of the * 
+    // notice the const is to the _right_ of the * 
     const int* const p_e4 = &e4;
     printf("*p_e4 is %d\n", *p_e4);
 
@@ -104,7 +104,7 @@ void example5(void)
 {
     // This is allowed (probably for backward compatiblity)
     // ... but it's very dangerous.
-    char *danger = "mousey";
+    char *danger = "mouse";
 
     // care for a seg fault, perhaps? 
     //*danger = 'l';
@@ -114,7 +114,8 @@ void example5(void)
     // compiler will catch this one.
     // *safe = 'm'; // read-only variable is not assignable
 
-    // This is OK, though, because the pointer is not const
+    // This is OK, though... 
+    // Because the pointer is not const, we can change it
     safe = "slide into home plate";
     printf("%s\n", safe);
 
@@ -127,8 +128,8 @@ void example5(void)
 
     // Or even this:
     const char *const my_format = "The %s of %s is %d\n";
-    printf(my_format, "Duke", "Earl", 18);
-    printf(my_format, "Book", "Kells", 1800);
+    printf(my_format, "Duke", "Earl", 12);
+    printf(my_format, "Book", "Kells", 1200);
 }
 
 int main(void)
