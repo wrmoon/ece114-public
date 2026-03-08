@@ -18,12 +18,12 @@ void example1(void)
     // discards qualifiers
 
 #if 0 // does not compile
-    int *ptr = &ca;
+    int *ptr = &e1;
     printf("*ptr is %d\n", *ptr);
 
     *ptr = 3;
 
-    printf("ca is now %d\n", ca);
+    printf("ca is now %d\n", e1);
     printf("*ptr is now %d\n", *ptr);
 #endif
 
@@ -107,7 +107,7 @@ void example5(void)
     char *danger = "mouse";
 
     // care for a seg fault, perhaps? 
-    //*danger = 'l';
+    // *danger = 'l';
     printf("%s\n", danger);
 
     const char *safe = "house";
