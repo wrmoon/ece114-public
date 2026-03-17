@@ -1,12 +1,8 @@
 #include <iostream>
 
-namespace Moon
-{
-    void cout(void);
-}
-
 int main()
 {
-    Moon::cout << "Hello, world!" << endl;
+    std::cout << "Hello, world!" << std::endl;
     return 0;
 }
+
