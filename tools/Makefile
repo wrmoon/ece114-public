@@ -1,7 +1,7 @@
 ################################################################################
 #
 # Universal (mostly) Makefile for ECE114
-# 2025-12-21 William Moon
+# 2026-03-22 William Moon
 #
 # This Makefile is designed to build an executable from all .cpp and .c files 
 # in the current directory.  This Makefile can be placed in any directory 
@@ -180,7 +180,7 @@ EXE_MAK := $(BUILD_DIR)/exe.mak
 ifneq ("$(wildcard $(EXE_MAK))","")
   -include $(EXE_MAK)
   all: $(EXE) $(EXE_MAK)
-  $(EXE): $(DEBUG_EXE) ; cp $(DEBUG_EXE) $(EXE)
+  $(EXE): $(DEBUG_EXE) ; cp -p $(DEBUG_EXE) $(EXE)
 else
   all: $(EXE_MAK)
 endif
@@ -199,7 +199,7 @@ ifeq ("$(QUIET)","false")
 endif
 	$(eval FOO := $(shell echo 'EXE := $(EXE_NAME)' > $(EXE_MAK)))
 ifndef EXE
-	cp $(DEBUG_EXE) $(EXE_NAME)
+	cp -p $(DEBUG_EXE) $(EXE_NAME)
 endif
 
 # Rule to build the executable by linking the object files
