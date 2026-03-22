@@ -169,20 +169,22 @@ DEPFILES := $(patsubst %.c,$(BUILD_DIR)/%.d,$(DEPFILES))
 OBJFILES := $(patsubst %.cpp,$(BUILD_DIR)/%.o,$(notdir $(SOURCES)))
 OBJFILES := $(patsubst %.c,$(BUILD_DIR)/%.o,$(OBJFILES))
 
-# Don't create dependencies for clean and zip
-ifeq (0, $(words $(filter $(NODEPS), $(MAKECMDGOALS))))
-  -include $(DEPFILES)
-endif
-
-# If we've previously figured out our executable name, then get that and 
-# create a dependency that copies our debug exe to our "real" exe name
 EXE_MAK := $(BUILD_DIR)/exe.mak
+
+# Always include exe.mak if it exists (so clean knows what to delete)
 ifneq ("$(wildcard $(EXE_MAK))","")
   -include $(EXE_MAK)
-  all: $(EXE) $(EXE_MAK)
-  $(EXE): $(DEBUG_EXE) ; cp -p $(DEBUG_EXE) $(EXE)
-else
-  all: $(EXE_MAK)
+endif
+
+# Don't set up build dependencies for clean and zip
+ifeq (0, $(words $(filter $(NODEPS), $(MAKECMDGOALS))))
+  -include $(DEPFILES)
+  ifneq ("$(wildcard $(EXE_MAK))","")
+    all: $(EXE) $(EXE_MAK)
+    $(EXE): $(DEBUG_EXE) ; cp -p $(DEBUG_EXE) $(EXE)
+  else
+    all: $(EXE_MAK)
+  endif
 endif
 
 # Rule to figure out our exe name, and create the exe.mak file
