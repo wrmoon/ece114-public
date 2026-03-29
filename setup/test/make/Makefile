@@ -1,1 +1,1 @@
-../../tools/Makefile
+../../../../public/tools/Makefile

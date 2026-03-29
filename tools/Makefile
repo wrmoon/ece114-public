@@ -98,7 +98,7 @@ else
 endif
 
 # set to YES to turn on sanitizer
-USE_SANITIZER := NO
+USE_SANITIZER ?= NO
 
 SAN_COMPILE_FLAGS := 
 SAN_LINK_FLAGS :=    
@@ -189,7 +189,6 @@ endif
 
 # Rule to figure out our exe name, and create the exe.mak file
 $(EXE_MAK): $(DEBUG_EXE)
-	$(info ::::$(OBJFILES)::::)
 	$(eval MAIN_O := $(shell nm --print-file-name --demangle $(OBJFILES) | grep " T _\?main" | cut -f1 -d:))
 ifeq ($(OS),Windows_NT)		# OS is windows NT or later
 	$(eval EXE_NAME := $(notdir $(basename $(MAIN_O))).exe)
