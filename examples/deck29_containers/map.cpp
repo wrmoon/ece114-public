@@ -1,26 +1,34 @@
-// accessing mapped values -- borrowed from http://www.cplusplus.com/reference/map/map/operator[]/
+// std::map example
 #include <iostream>
 #include <map>
+#include <unordered_map>
 #include <string>
 
-int main ()
+int main() 
 {
-  // key is a string, value is a string
-  std::map<std::string,std::string> mymap;
+    //std::map<std::string, int> scores;
+    std::unordered_map<std::string, int> scores;
 
-  mymap["yankee"]="she fell in love with the drummer";
-  mymap["hotel"]="...another and another";
-  mymap["foxtrot"]=mymap["hotel"] + ", she fell in love";
+    // Insert
+    scores["Bob"]   = 78;
+    scores["Alice"] = 92;
+    scores["Carol"] = 85;
 
-  std::cout << "mymap[\"hotel\"] is " << mymap["hotel"] << '\n';
-  std::cout << "mymap now contains " << mymap.size() << " elements.\n\n";
+    // Update
+    scores["Bob"] = 81;
 
-  std::cout << "Here are the contents of mymap:\n";
-  // iterate over all elements in map
-  for (auto &x: mymap)
-  {
-    std::cout << x.first << ": " << x.second << std::endl;
-  }
+    // Lookup
+    if (scores.count("Alice")) {
+        std::cout << "looking up Alice: " << scores["Alice"] << "\n";
+    }
 
-  return 0;
+    // Iterate — always in sorted key order
+    for (const auto& pair : scores) {
+        std::cout << pair.first << ": " << pair.second << "\n";
+    }
+
+    // Erase
+    scores.erase("Carol");
+
+    return 0;
 }
