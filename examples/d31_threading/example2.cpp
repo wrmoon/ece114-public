@@ -17,8 +17,8 @@ void printNumbers(Color color, int start, int stop)
     for (int i = start; i <= stop; ++i) 
     {
         sum++;
-        std::cout << color << i << Color::Reset << " " ;
-        //std::this_thread::sleep_for (std::chrono::microseconds(1));
+        //std::cout << color << i << Color::Reset << " " ;
+        std::this_thread::sleep_for (std::chrono::microseconds(1));
     }
 }
 
